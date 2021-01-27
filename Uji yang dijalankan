@@ -1,0 +1,21 @@
+Arima ==> Digunakan untuk data runtun waktu yang tidak ada trendnya, bisa naik terus, turun terus, ataupun acak
+
+Sarima ==> Digunakan untuk data runtun waktu yang memiliki trend (Ada pola naik atau turun pada periode tertentu)
+
+Uji yang harus dijalankan sebelum menjalankan Arima dan Sarima
+1. Stasioneritas
+* Stasioner terhadap mean
+>> Dilakukan uji augmeted dickey fuller
+>> Melihat plot ACF, kalau plot ACF turun atau naik secara cepat atau lambat (eksponensial) maka data belum stasioner
+
+* Stasioner terhadap varian
+>> Melihat nilai lamda, kalau lambda tidak sama dengan 1 maka harus dilakukan transformasi
+- lambda = -1 Transformasinya 1/Zt
+- lambda = -0.5 Transformasinya 1/sqrt(Zt)
+- lambda = 0 Transformasinya ln(Zt)
+- lambda = 0.5 Transformasinya sqrt(Zt)
+- lambda = 1 Transformasinya Zt
+
+2. Uji Asumsi
+1. Normalitas Residual
+2. Uji Idepedensi Residual/White Noise
