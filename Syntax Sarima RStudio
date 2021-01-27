@@ -1,0 +1,24 @@
+# Akan diramalkan data Air Pasanger yang plotnya memiliki pola
+AirPassangers
+str(AirPassangers)
+AirPasangers=as.ts(AirPassangers)
+ts.plot(AirPassangers)
+components.ts=decompose(AirPassangers)
+plot(components.ts)
+
+acf(AirPassangers)
+pacf(AirPassangers)
+x=log(AirPassangers)
+plot(diff(x)) #diff pertama agar data tidak stasioner
+data=diff(diff(x,12)) #diff untuk sessional 12 merupakan berulang setiap 12 periode
+plot(data)
+acf(data)
+pacf(data)
+
+library(sarima)
+library(astsa)
+
+model1 = sarima(x,0,1,1,0,1,1,12)
+model1
+sarima.for(x,24,0,1,1,0,1,1,12)
+
