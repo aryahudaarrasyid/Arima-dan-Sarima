@@ -1,0 +1,42 @@
+data1 <- read.csv("C:/Users/...")
+view(data1)
+data1=data1$x #Mengambil data runtun waktu yang akan diramalkan saja
+
+library(timeSeries)
+data1 = as.ts(data1) #Karena data 1 masih terbaca numerik maka kita ubah menjadi str time series
+str(data1)
+plot.ts(data1)
+
+#Stasioneritas terhadap varian
+library(EnvStats)
+box.cox(data1)
+#Melakukan Transformasi jika ditemukan data tidak stasioner
+
+library(tseries)
+adf.test(data1)
+
+# Jika data belum stasioner dalam mean maka dilakukan diff1=diff(data1)
+
+acf(data1)
+pacf(data1)
+
+fit=arima(data1,c(...,...,...)) #Masukkan orde arima yang didapat berdasar plot acf dan pacf
+fit
+
+#Uji Asumsi
+myresid=fit$residuals
+qqnorm(myresid)
+
+library(FitAR)
+boxresult<-LjungBoxTest(myresid)
+plot(boxresult[,3],main="Ljung-Box_Test",xlab="Lag",ylab="p-value")
+
+Box.test(myresid,type="Ljung-Box")
+
+#prediksi
+pred<-predict(fit,n.ahead=...) #Isi ... dengan banyak periode prediksi yang diinginkan
+ts.plot(data1,pred$pred)
+data1
+pred$pred
+pred
+
